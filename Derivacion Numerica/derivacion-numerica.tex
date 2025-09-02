@@ -1,4 +1,4 @@
-\documentclass[twoside]{report}
+\documentclass[twoside]{article}
 \usepackage[table]{xcolor}
 \usepackage[paper=letterpaper,left=3cm,right=3cm,top=3cm,bottom=2cm,includefoot]{geometry}
 \usepackage{fancyhdr}
@@ -21,20 +21,16 @@
 
 
 % insertar codigo en documento latex
-\usepackage{minted}
-\definecolor{LightGray}{gray}{0.92}
-\newminted{python}{ linenos,breaklines,mathescape,texcomments,xleftmargin=\parindent, numbersep=8pt,  bgcolor=LightGray
-}
-
-\renewcommand\listingscaption{C\'odigo}
+%\usepackage{minted}
+%\definecolor{LightGray}{gray}{0.92}
+%\newminted{python}{ linenos,breaklines,mathescape,texcomments,xleftmargin=\parindent, numbersep=8pt,  bgcolor=LightGray
+%}
+%\renewcommand\listingscaption{C\'odigo}
 
 
 % bibliografia: descomente estas dos lineas para usar estilo numerico, e.g. [1].
 \usepackage[square,numbers,sort&compress]{natbib}
-%\bibliographystyle{apastyle}
-
-\usepackage{subfiles} 
-
+\bibliographystyle{apastyle}
 
 \pagestyle{fancy}
 \renewcommand{\footrulewidth}{0.4pt}
@@ -70,7 +66,7 @@
     
     \vspace*{3\baselineskip}
 
-      \textsc{\Huge \textbf{}} %cambiar segun metodo
+      \textsc{\Huge \textbf{Derivación Númerica}}
       \vspace*{1.5\baselineskip}
       
       
@@ -83,10 +79,7 @@
         Facultad de Ciencias Físicas y Matemáticas\\
         UNIVERSIDAD DE CONCEPCIÓN}
       
-    
-    \vspace{4\baselineskip}
-    Enero 2024
-    \vspace{0.1\baselineskip}
+    \vspace{0.2\baselineskip}
 
     Concepción, Chile 
 
@@ -101,17 +94,14 @@
   
 \end{titlepage}
 
-
-\newpage
-
-\section{} %Cambiar segun metodo
+\section{Metodos de Derivación Númerica}
 
 
 
 
 % lista de referencias guardadas en referencias.bib
-\bibliographystyle{apalike}
-%\bibliography{referencias}
+%\bibliographystyle{apalike}
+\bibliography{referencias}
 
 
 \end{document}
