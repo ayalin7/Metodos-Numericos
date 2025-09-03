@@ -17,6 +17,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{listings}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
 \def\code#1{\texttt{#1}}
 
 
@@ -94,14 +96,108 @@
   
 \end{titlepage}
 
-\section{Metodos de Derivación Númerica}
+\section{Porqué una de Derivación Númerica}
+
+En la física uno de los recursos matematicos más utlizados es la derivada. Matematicamente la definimos como la taza de cambio de una función
+y le tenemos una definición clásica, ánalitica y familiar. 
+
+  \begin{align}
+    \frac{d f(x)}{dx} = \lim_{h \rightarrow 0} \frac{f(x+h)- f(x)}{h} \label{eq:derivada-analitica}
+  \end{align}
+
+El problema ocurre cuando tenemos una situación en la que necesitamos generar una derivada donde tenemos un set de $n$ elementos 
+discretos y si quisieramos estudiar el comportamiento de estos datos, podria ser util conocer su derivada, para esto aparece el termino
+de derivación númerica la cual, en terminos mas simples, se basa en utilizar la expansión en serie de Taylor en un punto en
+especifico para poder evaluar la derivada. 
+
+\section{Tipos de Derivaciones Númericas}
+Veremos que al utilizar la ecuación\eqref{eq:derivada-analitica} podemos manipularla para buscar la derivada en un punto especifico:
+
+  \begin{align*}
+    \left. \frac{d f(x)}{dx} \right|_{\tilde{x}} = \lim_{h \rightarrow 0} \frac{f(\tilde{x}+h)- f(\tilde{x})}{h} 
+  \end{align*}
+
+Intuitivamente tomariamos el valor de $h$ más pequeño, esto nos trae diversas problematicas, 
+¿hay algún grado de error asociado?, ¿qué tan pequeño es suficiente?. Estas preguntas nos hacen darnos cuenta
+que el approach anterior de simplemente evaluar en el punto con un valor muy pequeño no es lo más simple. \\
+Por ello tendremos otros acercamientos a lo planteado incialmente, las series de Taylor.
+
+  \subsection{Derivada Adelantada}
+Haciendo no distinción entre $x$ y $\tilde{x}$, tomamos la expansión en serie de Taylor tal que:
+
+\begin{align}
+  f(x+h) = f(x) + h f'(x) + \frac{h^2}{2}f''(x) + \frac{h^3}{6} f'''(x) + \frac{h^4}{24}f^4(x) + \dots 
+\end{align}
+
+Que puede reescribirse como:
+
+  \begin{align}
+    f'(x) = \frac{f(x+h)-f(x)}{h} - \frac{h}{2}f''(x) + \dots
+  \end{align}
+
+Entonces, a partir de esto, podemos escribir la definición de la primera derivada adelantada:
+
+\begin{tcolorbox}[colback=gray!20,colframe=black!40,title=Primera Derivada Adelantada]
+  \begin{align}
+    f' (x) = \frac{f (x+h)-f (x)}{h} - \mathcal{O} (h)
+  \end{align}
+\end{tcolorbox}
+
+Este segundo termino del lado derecho, $\mathcal{O}(h)$ corresponde al error, el cual no deberia ser
+muy grande o malo para un $h$ suficentemente pequeño. \\ Se llama derivada adelantada porque 
+comienza en el valor $x$ y se mueve hacia adelante en la posicion positiva $x+h$.
+
+\subsection{Derivada Retrasada}
+Tal como en la sección anterior pero de forma inversa podemos definir lo que es la derivada retrasada,
+utilizando la expansión en serie de Taylor para $f(x-h)$. La cual se puede definir tal como en la ecuación
+de su contraparte como:
+
+  \begin{align}
+    f(x-h) = f(x) - h f'(x) + \frac{h^2}{2}f''(x) - \frac{h^3}{6} f'''(x) + \frac{h^4}{24}f^4(x) + \dots 
+  \end{align}
+
+Luego, obtendriamos:
+
+  \begin{align}
+    f'(x) = \frac{f(x)-f(x-h)}{h} + \frac{h}{2}f''(x) - \dots
+  \end{align}
+
+Luego, la aproximación de la derivada de $f(x)$ evaluada en $x$ sería:
+
+\begin{tcolorbox}[colback=gray!20,colframe=black!40,title=Primera Derivada Retrasada]
+  \begin{align}
+    f' (x) = \frac{f (x)-f (x-h)}{h} + \mathcal{O} (h)
+  \end{align}
+\end{tcolorbox}
+
+\subsection{Derivada Centrada}
+
+Por último, buscamos un método que nos entregue una derivada más precisa que las anteriores, por ende 
+al igual que en los casos anteriores buscamos la expansión en serie de Taylor de la funcion alrededor de $x$
+pero esta vez buscamos un salto de valor $h/2$ en vez de solo $h$, tal que:
+
+\begin{align}
+  f \left( x + \frac{h}{2} \right) = f (x) + \frac{h}{2} f'(x) +\frac{h^2}{8}f''(x) + \frac{h^3}{48}f'''(x) + \dots \label{eq:derivada-centrada-positiva}
+\end{align}
+
+Podemos escribir la misma expansión pero moviendonos en la dirección negativa, tal que:
+
+\begin{align}
+  f \left( x - \frac{h}{2} \right) = f (x) - \frac{h}{2} f'(x) +\frac{h^2}{8}f''(x) - \frac{h^3}{48}f'''(x) + \dots \label{eq:derivada-centrada-negativa}
+\end{align}
+
+Si restamos la ecuación \eqref{eq:derivada-centrada-negativa} a la ecuación \eqref{eq:derivada-centrada-positiva} obtenemos:
+
+\begin{tcolorbox}[colback=gray!20,colframe=black!40,title=Primera Derivada Centrada]
+  \begin{align}
+    f' (x) = \frac{f (x + \frac{h}{2})-f (x- \frac{h}{2})}{h} + \mathcal{O} (h^2)
+  \end{align}
+\end{tcolorbox}
+
+Es útil notar que el uso de la derivada centrada corresponde a utilizar los puntos medios a los lados del valor donde estamos evaluando
+y por ende si necesitamos evaluar la derivada o calcular en set finito, en algún endpoint no será posible porque es necesario conocer el siguiente valor a evaluar $n+1$.
 
 
-
-
-% lista de referencias guardadas en referencias.bib
-%\bibliographystyle{apalike}
-\bibliography{referencias}
 
 
 \end{document}
