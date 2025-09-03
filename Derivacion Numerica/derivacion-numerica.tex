@@ -39,7 +39,9 @@
 \renewcommand{\headrulewidth}{0.4pt}
 \fancyfoot{}
 
+%header y footer
 \fancyfoot[RE,RO]{\thepage}
+\fancyfoot[LE,LO]{Benjamin Ayala Baeza}
 
 
 \definecolor{tcc}{RGB}{217,217,217} % Table cell color
@@ -48,53 +50,39 @@
 \setlength{\arrayrulewidth}{0.5pt}
 \renewcommand{\arraystretch}{2}
 
+\tcbset{
+    portada/.style={
+        enhanced,
+        colback=white,
+        colframe=black,
+        sharp corners,
+        boxrule=0.4pt,
+        drop shadow, % sombra elegante
+        width=\textwidth,
+        center
+    }
+}
+
+%esto hace que desaperezca el header en la primera plana
+\fancypagestyle{plainfirst}{
+    \fancyhf{}
+    \fancyfoot[RE,RO]{\thepage} % mantiene número de página
+}
 
 \begin{document}
 
-% PORTADA
-\begin{titlepage}
-  \fancypagestyle{frontpage}{             % Se define el estilo frontpage.
-  \fancyhf{}                          % Elimina la cabecera y los pies
-  \renewcommand{\headrulewidth}{0pt}  % Elimina líneas en cabecera
-  \renewcommand{\footrulewidth}{0pt}  % Elimina líneas en pies
-  \vspace*{1\baselineskip}
-}
+\thispagestyle{plainfirst}
 
-  \newgeometry{top=4cm, bottom=4cm, left=4cm, right=4cm} 
-  
-  \thispagestyle{frontpage}
-  
-  \begin{center}
-    
-    \vspace*{3\baselineskip}
+%\vspace*{\fill}
+\begin{tcolorbox}[portada]
+    \centering
+    {\Huge \bfseries Métodos Númericos para la Física}\\[0.5cm]
+    {\LARGE Derivación Númerica}\\[0.5cm]
+    {\large Benjamín Ayala Baeza}
+\end{tcolorbox}
+%\vspace*{\fill}
 
-      \textsc{\Huge \textbf{Derivación Númerica}}
-      \vspace*{1.5\baselineskip}
-      
-      
-      \vspace*{4\baselineskip}
-      
-      \large{\textbf{Benjamín Ayala Baeza}}\\ 
-      
-      \large{
-        Departamento de Física\\
-        Facultad de Ciencias Físicas y Matemáticas\\
-        UNIVERSIDAD DE CONCEPCIÓN}
-      
-    \vspace{0.2\baselineskip}
 
-    Concepción, Chile 
-
-    \vspace{1.5\baselineskip}
-    
-    
-  \end{center}
-  
-  \vspace*{4\baselineskip}
-  
-  % La cabecera de esta página se cambia en el documento principal, en "cabecera portada"
-  
-\end{titlepage}
 
 \section{Porqué una de Derivación Númerica}
 
