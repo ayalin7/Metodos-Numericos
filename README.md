@@ -2,4 +2,5 @@
 Corresponde a una coleccion de algortimos de metodos numericos para problemas fisicos.
 Junto a ellos intentare incorporar un documento que lo explique con su correspondiente codigo. Por el momento corresponderan a codigo Python.
 
-Este repositorio esta basado en notas del curso Fisica Computacional II dictado por Dr. Roberto Navarro en la Universidad de Concepcion, ademas, toma notas a partir del libro numerical methods in physics with python.
+Este repositorio esta basado en notas del curso Fisica Computacional II dictado por Dr. Roberto Navarro en la Universidad de Concepcion, ademas, toma notas a partir del libro Numerical Methods in Physics with Python.
+Las motivaciones de este repositorio son demasiadas pero principalemnte la divulgación de estos conocimientos de una manera más simple que en la literatura y para poder practicar como persona natural.
