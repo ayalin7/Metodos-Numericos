@@ -17,6 +17,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{listings}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
 \def\code#1{\texttt{#1}}
 
 
@@ -37,7 +39,9 @@
 \renewcommand{\headrulewidth}{0.4pt}
 \fancyfoot{}
 
+%header y footer
 \fancyfoot[RE,RO]{\thepage}
+\fancyfoot[LE,LO]{Benjamin Ayala Baeza}
 
 
 \definecolor{tcc}{RGB}{217,217,217} % Table cell color
@@ -46,73 +50,41 @@
 \setlength{\arrayrulewidth}{0.5pt}
 \renewcommand{\arraystretch}{2}
 
+\tcbset{
+    portada/.style={
+        enhanced,
+        colback=white,
+        colframe=black,
+        sharp corners,
+        boxrule=0.4pt,
+        drop shadow, % sombra elegante
+        width=\textwidth,
+        center
+    }
+}
+
+%esto hace que desaperezca el header en la primera plana
+\fancypagestyle{plainfirst}{
+    \fancyhf{}
+    \fancyfoot[RE,RO]{\thepage} % mantiene número de página
+}
 
 \begin{document}
 
-% PORTADA
-\begin{titlepage}
-  \fancypagestyle{frontpage}{             % Se define el estilo frontpage.
-  \fancyhf{}                          % Elimina la cabecera y los pies
-  \renewcommand{\headrulewidth}{0pt}  % Elimina líneas en cabecera
-  \renewcommand{\footrulewidth}{0pt}  % Elimina líneas en pies
-  \vspace*{1\baselineskip}
-}
+\thispagestyle{plainfirst}
 
-  \newgeometry{top=4cm, bottom=4cm, left=4cm, right=4cm} 
-  
-  \thispagestyle{frontpage}
-  
-  \begin{center}
-    
-    \vspace*{3\baselineskip}
-
-      \textsc{\Huge \textbf{Integración Numerica}}
-      \vspace*{1.5\baselineskip}
-      
-      
-      \vspace*{4\baselineskip}
-      
-      \large{\textbf{Benjamín Ayala Baeza}}\\ 
-      
-      \large{
-        Departamento de Física\\
-        Facultad de Ciencias Físicas y Matemáticas\\
-        UNIVERSIDAD DE CONCEPCIÓN}
-      
-    
-    \vspace{4\baselineskip}
-      Enero 2023
-    \vspace{0.1\baselineskip}
-
-    Concepción, Chile 
-
-    \vspace{1.5\baselineskip}
-    
-    
-  \end{center}
-  
-  \vspace*{4\baselineskip}
-  
-  % La cabecera de esta página se cambia en el documento principal, en "cabecera portada"
-  
-\end{titlepage}
-
-\section{Metodos de Integracion Numerica}
-Para la integracion numerica existen diversos metodos, en particular solo abordare unos los mas simples.
-
-  \subsection{Midpoint Rule}
-Con este metodo aproximamos una integral definida de la siguiente forma:
-    
-    \begin{align}
-      \int_{a}^{b} f(x) dx = h f \left( \frac{a + b}{2} \right),
-    \end{align}
-
-donde $h$ corresponde a la diferencia entre el intervalo de integracion, $h= a-b$. 
+%\vspace*{\fill}
+\begin{tcolorbox}[portada]
+    \centering
+    {\Huge \bfseries Métodos Númericos para la Física}\\[0.5cm]
+    {\LARGE Integración Númerica}\\[0.5cm]
+    {\large Benjamín Ayala Baeza}
+\end{tcolorbox}
+%\vspace*{\fill}
 
 
-% lista de referencias guardadas en referencias.bib
-%\bibliographystyle{apalike}
-\bibliography{referencias}
+
+
 
 
 \end{document}

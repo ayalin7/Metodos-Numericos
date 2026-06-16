@@ -10,6 +10,10 @@ profile_default/
 ipython_config.py
 
 # latex 
+# Archivos temporales de LaTeX
+.ipynb_checkpoints
+build/
+
 *.aux
 *.lof
 *.log

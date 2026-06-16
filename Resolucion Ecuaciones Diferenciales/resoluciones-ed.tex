@@ -1,4 +1,4 @@
-\documentclass[twoside]{report}
+\documentclass[twoside]{article}
 \usepackage[table]{xcolor}
 \usepackage[paper=letterpaper,left=3cm,right=3cm,top=3cm,bottom=2cm,includefoot]{geometry}
 \usepackage{fancyhdr}
@@ -17,31 +17,31 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{listings}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
 \def\code#1{\texttt{#1}}
 
 
 % insertar codigo en documento latex
-\usepackage{minted}
-\definecolor{LightGray}{gray}{0.92}
-\newminted{python}{ linenos,breaklines,mathescape,texcomments,xleftmargin=\parindent, numbersep=8pt,  bgcolor=LightGray
-}
-
-\renewcommand\listingscaption{C\'odigo}
+%\usepackage{minted}
+%\definecolor{LightGray}{gray}{0.92}
+%\newminted{python}{ linenos,breaklines,mathescape,texcomments,xleftmargin=\parindent, numbersep=8pt,  bgcolor=LightGray
+%}
+%\renewcommand\listingscaption{C\'odigo}
 
 
 % bibliografia: descomente estas dos lineas para usar estilo numerico, e.g. [1].
 \usepackage[square,numbers,sort&compress]{natbib}
-%\bibliographystyle{apastyle}
-
-\usepackage{subfiles} 
-
+\bibliographystyle{apastyle}
 
 \pagestyle{fancy}
 \renewcommand{\footrulewidth}{0.4pt}
 \renewcommand{\headrulewidth}{0.4pt}
 \fancyfoot{}
 
+%header y footer
 \fancyfoot[RE,RO]{\thepage}
+\fancyfoot[LE,LO]{Benjamin Ayala Baeza}
 
 
 \definecolor{tcc}{RGB}{217,217,217} % Table cell color
@@ -50,68 +50,41 @@
 \setlength{\arrayrulewidth}{0.5pt}
 \renewcommand{\arraystretch}{2}
 
+\tcbset{
+    portada/.style={
+        enhanced,
+        colback=white,
+        colframe=black,
+        sharp corners,
+        boxrule=0.4pt,
+        drop shadow, % sombra elegante
+        width=\textwidth,
+        center
+    }
+}
+
+%esto hace que desaperezca el header en la primera plana
+\fancypagestyle{plainfirst}{
+    \fancyhf{}
+    \fancyfoot[RE,RO]{\thepage} % mantiene número de página
+}
 
 \begin{document}
 
-% PORTADA
-\begin{titlepage}
-  \fancypagestyle{frontpage}{             % Se define el estilo frontpage.
-  \fancyhf{}                          % Elimina la cabecera y los pies
-  \renewcommand{\headrulewidth}{0pt}  % Elimina líneas en cabecera
-  \renewcommand{\footrulewidth}{0pt}  % Elimina líneas en pies
-  \vspace*{1\baselineskip}
-}
+\thispagestyle{plainfirst}
 
-  \newgeometry{top=4cm, bottom=4cm, left=4cm, right=4cm} 
-  
-  \thispagestyle{frontpage}
-  
-  \begin{center}
-    
-    \vspace*{3\baselineskip}
-
-      \textsc{\Huge \textbf{}} %cambiar segun metodo
-      \vspace*{1.5\baselineskip}
-      
-      
-      \vspace*{4\baselineskip}
-      
-      \large{\textbf{Benjamín Ayala Baeza}}\\ 
-      
-      \large{
-        Departamento de Física\\
-        Facultad de Ciencias Físicas y Matemáticas\\
-        UNIVERSIDAD DE CONCEPCIÓN}
-      
-    
-    \vspace{4\baselineskip}
-    Enero 2024
-    \vspace{0.1\baselineskip}
-
-    Concepción, Chile 
-
-    \vspace{1.5\baselineskip}
-    
-    
-  \end{center}
-  
-  \vspace*{4\baselineskip}
-  
-  % La cabecera de esta página se cambia en el documento principal, en "cabecera portada"
-  
-\end{titlepage}
-
-
-\newpage
-
-\section{} %Cambiar segun metodo
+%\vspace*{\fill}
+\begin{tcolorbox}[portada]
+    \centering
+    {\Huge \bfseries Métodos Númericos para la Física}\\[0.5cm]
+    {\LARGE Resolución de Ecuaciones Diferenciales}\\[0.5cm]
+    {\large Benjamín Ayala Baeza}
+\end{tcolorbox}
+%\vspace*{\fill}
 
 
 
 
-% lista de referencias guardadas en referencias.bib
-\bibliographystyle{apalike}
-%\bibliography{referencias}
 
 
 \end{document}
